@@ -30,6 +30,7 @@ class MainActivity : MIUIActivity() {
                 MIUIDialog(activity).apply {
                     setTitle("Test")
                     setMessage("TestMessage")
+                    setEditText("", "test")
                     setLButton("Cancel") {
                         dismiss()
                     }
@@ -41,6 +42,7 @@ class MainActivity : MIUIActivity() {
             }))
             add(TextSummaryV("test", tips = "summary"))
             add(AuthorV(getDrawable(R.mipmap.ic_launcher)!!, "Test", "Test123"))
+            add(AuthorV(getDrawable(R.mipmap.ic_launcher)!!, "Test"))
             add(TextWithSwitchV(TextV("test"), SwitchV("test")))
             add(TextWithSpinnerV(TextV("Spinner"), SpinnerV(arrayListOf<MIUIPopupData>().apply {
                 add(MIUIPopupData("test") { showToast("select test") })
