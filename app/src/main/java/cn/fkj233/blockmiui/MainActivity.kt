@@ -79,6 +79,28 @@ class MainActivity : MIUIActivity() {
     override fun menuItems(): ArrayList<BaseView> {
         return arrayListOf<BaseView>().apply {
             add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
+            add(TextV("ThisMenu"))
         }
     }
 
