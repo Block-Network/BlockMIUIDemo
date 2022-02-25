@@ -23,10 +23,10 @@ class MainActivity : MIUIActivity() {
 
     override fun mainItems(): ArrayList<BaseView> {
         return arrayListOf<BaseView>().apply {
-            add(TextSummaryV("showTest", onClickListener = {
+            add(TextSummaryArrowV(TextSummaryV("showTest", onClickListener = {
                 showFragment("test")
-            }))
-            add(TextSummaryV("showDialog", onClickListener = {
+            })))
+            add(TextSummaryArrowV(TextSummaryV("showDialog", onClickListener = {
                 MIUIDialog(activity).apply {
                     setTitle("Test")
                     setMessage("TestMessage")
@@ -39,8 +39,9 @@ class MainActivity : MIUIActivity() {
                     }
                     show()
                 }
-            }))
-            add(TextSummaryV("test", tips = "summary"))
+            })))
+            add(TextSummaryArrowV(TextSummaryV("test", tips = "summary")))
+            add(TextSummaryWithSwitchV(TextSummaryV("test", tips = "summary"), SwitchV("test12312312")))
             add(AuthorV(getDrawable(R.mipmap.ic_launcher)!!, "Test", "Test123"))
             add(AuthorV(getDrawable(R.mipmap.ic_launcher)!!, "Test"))
             add(TextWithSwitchV(TextV("test"), SwitchV("test")))
@@ -52,7 +53,7 @@ class MainActivity : MIUIActivity() {
             }, "test")))
             add(LineV())
             add(TitleTextV("Title"))
-            add(TextSummaryV("test", tips = "summary"))
+            add(TextSummaryArrowV(TextSummaryV("test", tips = "summary")))
             add(TextV("SeekbarWithText"))
             add(SeekBarWithTextV("seekbar", 0, 100, 0))
             // TODO: Bug not fix
@@ -68,7 +69,7 @@ class MainActivity : MIUIActivity() {
             }
             add(TextWithSwitchV(TextV("data-binding"), SwitchV("binding", dataBindingSend = binding.bindingSend)))
             add(TextWithSwitchV(TextV("test123"), SwitchV("test123", dataBindingRecv = binding.binding.getRecv(1))))
-            add(TextSummaryV("test", dataBindingRecv = binding.binding.getRecv(2)))
+            add(TextSummaryArrowV(TextSummaryV("test"), dataBindingRecv = binding.binding.getRecv(2)))
         }
     }
 
