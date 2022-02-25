@@ -40,7 +40,7 @@ class MainActivity : MIUIActivity() {
                     show()
                 }
             })))
-            add(TextSummaryArrowV(TextSummaryV("test", tips = "summary")))
+            add(TextSummaryArrowV(TextSummaryV("test", tips = "summary", onClickListener = {})))
             add(TextSummaryWithSwitchV(TextSummaryV("test", tips = "summary"), SwitchV("test12312312")))
             add(AuthorV(getDrawable(R.mipmap.ic_launcher)!!, "Test", "Test123"))
             add(AuthorV(getDrawable(R.mipmap.ic_launcher)!!, "Test"))
