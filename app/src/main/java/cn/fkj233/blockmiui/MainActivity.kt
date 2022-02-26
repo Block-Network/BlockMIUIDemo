@@ -9,6 +9,7 @@ import android.widget.Toast
 import cn.fkj233.ui.activity.MIUIActivity
 import cn.fkj233.ui.activity.data.MIUIPopupData
 import cn.fkj233.ui.activity.view.*
+import cn.fkj233.ui.dialog.NewDialog
 import cn.fkj233.ui.dialog.MIUIDialog
 
 class MainActivity : MIUIActivity() {
@@ -25,6 +26,24 @@ class MainActivity : MIUIActivity() {
         return arrayListOf<BaseView>().apply {
             add(TextSummaryArrowV(TextSummaryV("showTest", onClickListener = {
                 showFragment("test")
+            })))
+            add(TextSummaryArrowV(TextSummaryV("showTest2", onClickListener = {
+                NewDialog(activity) {
+                    setTitle("Test")
+                    setMessage("TestMessage")
+                    Button("1") {
+                        dismiss()
+                    }
+                    Button("2") {
+                        dismiss()
+                    }
+                    Button("3") {
+                        dismiss()
+                    }
+                    Button("4", cancelStyle = true) {
+                        dismiss()
+                    }
+                }.show()
             })))
             add(TextSummaryArrowV(TextSummaryV("showDialog", onClickListener = {
                 MIUIDialog(activity).apply {
