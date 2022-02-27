@@ -18,126 +18,97 @@ class MainActivity : MIUIActivity() {
     private val activity = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         setSP(getPreferences(0))
-    }
-
-    override fun mainItems(): ArrayList<BaseView> {
-        return arrayListOf<BaseView>().apply {
-            add(TextSummaryArrowV(TextSummaryV("showTest", onClickListener = {
-                showFragment("test")
-            })))
-            add(TextSummaryArrowV(TextSummaryV("showTest2", onClickListener = {
-                NewDialog(activity) {
-                    setTitle("Test")
-                    setMessage("TestMessage")
-                    Button("1") {
-                        dismiss()
+        initView {
+            registerMain("Home") {
+                TextSummaryArrow(TextSummaryV("showTest", onClickListener = {
+                    showFragment("test")
+                }))
+                TextSummaryArrow(TextSummaryV("showTest2", onClickListener = {
+                    NewDialog(activity) {
+                        setTitle("Test")
+                        setMessage("TestMessage")
+                        Button("1") {
+                            dismiss()
+                        }
+                        Button("2") {
+                            dismiss()
+                        }
+                        Button("3") {
+                            dismiss()
+                        }
+                        Button("4", cancelStyle = true) {
+                            dismiss()
+                        }
+                    }.show()
+                }))
+                TextSummaryArrow(TextSummaryV("showDialog", onClickListener = {
+                    MIUIDialog(activity) {
+                        setTitle("Test")
+                        setMessage("TestMessage")
+                        setEditText("", "test")
+                        setLButton("Cancel") {
+                            dismiss()
+                        }
+                        setRButton("OK") {
+                            dismiss()
+                        }
+                    }.show()
+                }))
+                TextSummaryArrow(TextSummaryV("test", tips = "summary", onClickListener = {}))
+                TextSummaryWithSwitch(TextSummaryV("test", tips = "summary"), SwitchV("test12312312"))
+                Author(getDrawable(R.mipmap.ic_launcher)!!, "Test", "Test123")
+                Author(getDrawable(R.mipmap.ic_launcher)!!, "Test")
+                TextWithSwitch(TextV("test"), SwitchV("test"))
+                TextWithSpinner(TextV("Spinner"), SpinnerV(arrayListOf<MIUIPopupData>().apply {
+                    add(MIUIPopupData("test") { showToast("select test") })
+                    add(MIUIPopupData("test1") { showToast("select test1") })
+                    add(MIUIPopupData("test2") { showToast("select test2") })
+                    add(MIUIPopupData("test3") { showToast("select test3") })
+                }, "test"))
+                Line()
+                TitleText("Title")
+                TextSummaryArrow(TextSummaryV("test", tips = "summary"))
+                Text("SeekbarWithText")
+                SeekBarWithText("seekbar", 0, 100, 0)
+                Line()
+                TitleText("DataBinding")
+                val binding = getDataBinding(false) { view, flags, data ->
+                    when (flags) {
+                        1 -> (view as Switch).isEnabled = data as Boolean
+                        2 -> view.visibility = if (data as Boolean) View.VISIBLE else View.GONE
                     }
-                    Button("2") {
-                        dismiss()
-                    }
-                    Button("3") {
-                        dismiss()
-                    }
-                    Button("4", cancelStyle = true) {
-                        dismiss()
-                    }
-                }.show()
-            })))
-            add(TextSummaryArrowV(TextSummaryV("showDialog", onClickListener = {
-                MIUIDialog(activity).apply {
-                    setTitle("Test")
-                    setMessage("TestMessage")
-                    setEditText("", "test")
-                    setLButton("Cancel") {
-                        dismiss()
-                    }
-                    setRButton("OK") {
-                        dismiss()
-                    }
-                    show()
                 }
-            })))
-            add(TextSummaryArrowV(TextSummaryV("test", tips = "summary", onClickListener = {})))
-            add(TextSummaryWithSwitchV(TextSummaryV("test", tips = "summary"), SwitchV("test12312312")))
-            add(AuthorV(getDrawable(R.mipmap.ic_launcher)!!, "Test", "Test123"))
-            add(AuthorV(getDrawable(R.mipmap.ic_launcher)!!, "Test"))
-            add(TextWithSwitchV(TextV("test"), SwitchV("test")))
-            add(TextWithSpinnerV(TextV("Spinner"), SpinnerV(arrayListOf<MIUIPopupData>().apply {
-                add(MIUIPopupData("test") { showToast("select test") })
-                add(MIUIPopupData("test1") { showToast("select test1") })
-                add(MIUIPopupData("test2") { showToast("select test2") })
-                add(MIUIPopupData("test3") { showToast("select test3") })
-            }, "test")))
-            add(LineV())
-            add(TitleTextV("Title"))
-            add(TextSummaryArrowV(TextSummaryV("test", tips = "summary")))
-            add(TextV("SeekbarWithText"))
-            add(SeekBarWithTextV("seekbar", 0, 100, 0))
-            // TODO: Bug not fix
-//            add(TextV("Seekbar"))
-//            add(SeekBarV("seekbar1", 0, 100, defaultProgress = 0))
-            add(LineV())
-            add(TitleTextV("DataBinding"))
-            val binding = getDataBinding(false) { view, flags, data ->
-                when (flags) {
-                    1 -> (view as Switch).isEnabled = data as Boolean
-                    2 -> view.visibility = if (data as Boolean) View.VISIBLE else View.GONE
-                }
-            }
-            add(TextWithSwitchV(TextV("data-binding"), SwitchV("binding", dataBindingSend = binding.bindingSend)))
-            add(TextWithSwitchV(TextV("test123"), SwitchV("test123", dataBindingRecv = binding.binding.getRecv(1))))
-            add(TextSummaryArrowV(TextSummaryV("test"), dataBindingRecv = binding.binding.getRecv(2)))
-        }
-    }
-
-    override fun mainName(): String {
-        return "Home"
-    }
-
-    override fun menuItems(): ArrayList<BaseView> {
-        return arrayListOf<BaseView>().apply {
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-            add(TextV("ThisMenu"))
-        }
-    }
-
-    override fun menuName(): String {
-        return "Menu"
-    }
-
-    override fun getItems(item: String): ArrayList<BaseView> {
-        return when (item) {
-            "test" -> arrayListOf<BaseView>().apply {
-                add(TextV("thisTest"))
+                TextWithSwitch(TextV("data-binding"), SwitchV("binding", dataBindingSend = binding.bindingSend))
+                TextWithSwitch(TextV("test123"), SwitchV("test123", dataBindingRecv = binding.binding.getRecv(1)))
+                TextSummaryArrow(TextSummaryV("test"), dataBindingRecv = binding.binding.getRecv(2))
             }
 
-            /** 必须写这两个 不然会出错 */
-            menuName() -> menuItems()
-            else -> mainItems()
+            registerMenu("Menu") {
+                Text("ThisMenu")
+                Text("ThisMenu")
+                Text("ThisMenu")
+                Text("ThisMenu")
+                Text("ThisMenu")
+                Text("ThisMenu")
+                Text("ThisMenu")
+                Text("ThisMenu")
+                Text("ThisMenu")
+                Text("ThisMenu")
+                Text("ThisMenu")
+                Text("ThisMenu")
+                Text("ThisMenu")
+                Text("ThisMenu")
+                Text("ThisMenu")
+                Text("ThisMenu")
+                Text("ThisMenu")
+            }
+
+            register("test", "test") {
+                Text("ThisTest")
+            }
         }
+        super.onCreate(savedInstanceState)
     }
 
     fun showToast(string: String) {
