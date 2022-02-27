@@ -66,6 +66,12 @@ class MainActivity : MIUIActivity() {
                     add(MIUIPopupData("test2") { showToast("select test2") })
                     add(MIUIPopupData("test3") { showToast("select test3") })
                 }, "test"))
+                TextSummaryWithSpinner(TextSummaryV("Spinner", tips = "Summary"), SpinnerV(arrayListOf<MIUIPopupData>().apply {
+                    add(MIUIPopupData("test") { showToast("select test") })
+                    add(MIUIPopupData("test1") { showToast("select test1") })
+                    add(MIUIPopupData("test2") { showToast("select test2") })
+                    add(MIUIPopupData("test3") { showToast("select test3") })
+                }, "test"))
                 Line()
                 TitleText("Title")
                 TextSummaryArrow(TextSummaryV("test", tips = "summary"))
