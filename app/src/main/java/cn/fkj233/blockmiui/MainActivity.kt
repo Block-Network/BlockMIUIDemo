@@ -17,8 +17,7 @@ class MainActivity : MIUIActivity() {
 
     private val activity = this
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        setSP(getPreferences(0))
+    init {
         initView {
             registerMain("Home") {
                 TextSummaryArrow(TextSummaryV("showTest", onClickListener = {
@@ -114,6 +113,10 @@ class MainActivity : MIUIActivity() {
                 Text("ThisTest")
             }
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setSP(getPreferences(0))
         super.onCreate(savedInstanceState)
     }
 
