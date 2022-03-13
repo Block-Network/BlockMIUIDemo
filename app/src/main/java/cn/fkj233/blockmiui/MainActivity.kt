@@ -8,9 +8,12 @@ import android.widget.Switch
 import android.widget.Toast
 import cn.fkj233.ui.activity.MIUIActivity
 import cn.fkj233.ui.activity.data.MIUIPopupData
-import cn.fkj233.ui.activity.view.*
-import cn.fkj233.ui.dialog.NewDialog
+import cn.fkj233.ui.activity.view.SpinnerV
+import cn.fkj233.ui.activity.view.SwitchV
+import cn.fkj233.ui.activity.view.TextSummaryV
+import cn.fkj233.ui.activity.view.TextV
 import cn.fkj233.ui.dialog.MIUIDialog
+import cn.fkj233.ui.dialog.NewDialog
 
 class MainActivity : MIUIActivity() {
     private val handler by lazy { Handler(Looper.getMainLooper()) }
@@ -78,7 +81,7 @@ class MainActivity : MIUIActivity() {
                 SeekBarWithText("seekbar", 0, 100, 0)
                 Line()
                 TitleText("DataBinding")
-                val binding = getDataBinding(false) { view, flags, data ->
+                val binding = GetDataBinding(false) { view, flags, data ->
                     when (flags) {
                         1 -> (view as Switch).isEnabled = data as Boolean
                         2 -> view.visibility = if (data as Boolean) View.VISIBLE else View.GONE
