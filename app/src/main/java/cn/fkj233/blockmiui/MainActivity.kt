@@ -81,7 +81,7 @@ class MainActivity : MIUIActivity() {
                 SeekBarWithText("seekbar", 0, 100, 0)
                 Line()
                 TitleText("DataBinding")
-                val binding = GetDataBinding(false) { view, flags, data ->
+                val binding = GetDataBinding(true) { view, flags, data ->
                     when (flags) {
                         1 -> (view as Switch).isEnabled = data as Boolean
                         2 -> view.visibility = if (data as Boolean) View.VISIBLE else View.GONE
