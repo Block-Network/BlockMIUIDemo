@@ -7,7 +7,8 @@ import android.view.View
 import android.widget.Switch
 import android.widget.Toast
 import cn.fkj233.ui.activity.MIUIActivity
-import cn.fkj233.ui.activity.data.MIUIPopupData
+import cn.fkj233.ui.activity.data.AsyncInit
+import cn.fkj233.ui.activity.fragment.MIUIFragment
 import cn.fkj233.ui.activity.view.SpinnerV
 import cn.fkj233.ui.activity.view.SwitchV
 import cn.fkj233.ui.activity.view.TextSummaryV
@@ -25,6 +26,9 @@ class MainActivity : MIUIActivity() {
             registerMain("Home") {
                 TextSummaryArrow(TextSummaryV("showTest", onClickListener = {
                     showFragment("test")
+                }))
+                TextSummaryArrow(TextSummaryV("showAsyncTest", onClickListener = {
+                    showFragment("async")
                 }))
                 TextSummaryArrow(TextSummaryV("showTest2", onClickListener = {
                     NewDialog(activity) {
@@ -62,18 +66,29 @@ class MainActivity : MIUIActivity() {
                 Author(getDrawable(R.mipmap.ic_launcher)!!, "Test", "Test123")
                 Author(getDrawable(R.mipmap.ic_launcher)!!, "Test")
                 TextWithSwitch(TextV("test"), SwitchV("test"))
-                TextWithSpinner(TextV("Spinner"), SpinnerV(arrayListOf<MIUIPopupData>().apply {
-                    add(MIUIPopupData("test") { showToast("select test") })
-                    add(MIUIPopupData("test1") { showToast("select test1") })
-                    add(MIUIPopupData("test2") { showToast("select test2") })
-                    add(MIUIPopupData("test3") { showToast("select test3") })
-                }, "test"))
-                TextSummaryWithSpinner(TextSummaryV("Spinner", tips = "Summary"), SpinnerV(arrayListOf<MIUIPopupData>().apply {
-                    add(MIUIPopupData("test") { showToast("select test") })
-                    add(MIUIPopupData("test1") { showToast("select test1") })
-                    add(MIUIPopupData("test2") { showToast("select test2") })
-                    add(MIUIPopupData("test3") { showToast("select test3") })
-                }, "test"))
+                TextWithSpinner(TextV("Spinner"), SpinnerV("test") {
+                    add("test") { showToast("select test") }
+                    add("test1") { showToast("select test1") }
+                    add("test2") { showToast("select test2") }
+                    add("test3") { showToast("select test3") }
+                    add("test4") { showToast("select test4") }
+                    add("test5") { showToast("select test5") }
+                    add("test6") { showToast("select test6") }
+                    add("test7") { showToast("select test7") }
+                    add("test8") { showToast("select test8") }
+                    add("test9") { showToast("select test9") }
+                    add("test10") { showToast("select test10") }
+                    add("test11") { showToast("select test11") }
+                    add("test12") { showToast("select test12") }
+                    add("test13") { showToast("select test13") }
+                    add("test14") { showToast("select test14") }
+                })
+                TextSummaryWithSpinner(TextSummaryV("Spinner", tips = "Summary"), SpinnerV("test12312323123123123123123") {
+                    add("test12312323123123123123123") { showToast("select test") }
+                    add("test1") { showToast("select test1") }
+                    add("test2") { showToast("select test2") }
+                    add("test3") { showToast("select test3") }
+                })
                 Line()
                 TitleText("Title")
                 TextSummaryArrow(TextSummaryV("test", tips = "summary"))
@@ -112,8 +127,36 @@ class MainActivity : MIUIActivity() {
                 Text("ThisMenu")
             }
 
+            register("async", "Async") {
+                async = object: AsyncInit {
+                    override val skipLoadItem: Boolean = true
+
+                    override fun onInit(fragment: MIUIFragment) {
+                        fragment.showLoading()
+                        Thread.sleep(1000)
+                        fragment.addItem(TextV("Test"))
+                        Thread.sleep(1000)
+                        fragment.addItem(TextV("Test1"))
+                        Thread.sleep(1000)
+                        fragment.addItem(TextV("Test2"))
+                        Thread.sleep(1000)
+                        fragment.addItem(TextV("Test3"))
+                        Thread.sleep(1000)
+                        fragment.closeLoading()
+                        fragment.initData()
+                    }
+                }
+                Text("ThisAsync")
+                Text("ThisAsync2")
+                Text("ThisAsync3")
+                Text("ThisAsync4")
+                Text("ThisAsync5")
+                Text("ThisAsync6")
+            }
+
             register("test", "test") {
                 Text("ThisTest")
+                Text("ThisTest1")
             }
         }
     }
@@ -123,7 +166,7 @@ class MainActivity : MIUIActivity() {
         super.onCreate(savedInstanceState)
     }
 
-    fun showToast(string: String) {
+    private fun showToast(string: String) {
         handler.post {
             Toast.makeText(this, string, Toast.LENGTH_LONG).show()
         }
