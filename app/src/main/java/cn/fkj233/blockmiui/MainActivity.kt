@@ -23,7 +23,7 @@ class MainActivity : MIUIActivity() {
 
     init {
         initView {
-            registerMain("Home") {
+            registerMain("Home", false) {
                 TextSummaryArrow(TextSummaryV("showTest", onClickListener = {
                     showFragment("test")
                 }))
@@ -127,7 +127,7 @@ class MainActivity : MIUIActivity() {
                 Text("ThisMenu")
             }
 
-            register("async", "Async") {
+            register("async", "Async", false) {
                 async = object: AsyncInit {
                     override val skipLoadItem: Boolean = true
 
@@ -154,7 +154,7 @@ class MainActivity : MIUIActivity() {
                 Text("ThisAsync6")
             }
 
-            register("test", "test") {
+            register("test", "test", true) {
                 Text("ThisTest")
                 Text("ThisTest1")
             }
