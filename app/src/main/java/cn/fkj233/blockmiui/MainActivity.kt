@@ -8,6 +8,7 @@ import android.widget.Switch
 import android.widget.Toast
 import cn.fkj233.ui.activity.MIUIActivity
 import cn.fkj233.ui.activity.data.AsyncInit
+import cn.fkj233.ui.activity.data.DefValue
 import cn.fkj233.ui.activity.fragment.MIUIFragment
 import cn.fkj233.ui.activity.view.SpinnerV
 import cn.fkj233.ui.activity.view.SwitchV
@@ -96,7 +97,11 @@ class MainActivity : MIUIActivity() {
                 SeekBarWithText("seekbar", 0, 100, 0)
                 Line()
                 TitleText("DataBinding")
-                val binding = GetDataBinding(true) { view, flags, data ->
+                val binding = GetDataBinding(object : DefValue {
+                    override fun getValue(): Any {
+                        return getSP().getBoolean("binding", false)
+                    }
+                }) { view, flags, data ->
                     when (flags) {
                         1 -> (view as Switch).isEnabled = data as Boolean
                         2 -> view.visibility = if (data as Boolean) View.VISIBLE else View.GONE
@@ -154,9 +159,22 @@ class MainActivity : MIUIActivity() {
                 Text("ThisAsync6")
             }
 
-            register("test", "test", true) {
+            register("test", "test", false) {
                 Text("ThisTest")
                 Text("ThisTest1")
+                val binding = GetDataBinding(object : DefValue {
+                    override fun getValue(): Any {
+                        return getSP().getBoolean("binding123", false)
+                    }
+                }) { view, flags, data ->
+                    when (flags) {
+                        1 -> (view as Switch).isEnabled = data as Boolean
+                        2 -> view.visibility = if (data as Boolean) View.VISIBLE else View.GONE
+                    }
+                }
+                TextWithSwitch(TextV("data-binding"), SwitchV("binding123", dataBindingSend = binding.bindingSend))
+                TextWithSwitch(TextV("test123123"), SwitchV("test123123", dataBindingRecv = binding.binding.getRecv(1)))
+                TextSummaryArrow(TextSummaryV("test"), dataBindingRecv = binding.binding.getRecv(2))
             }
         }
     }
