@@ -132,7 +132,7 @@ class MainActivity : MIUIActivity() {
                 Text("ThisMenu")
             }
 
-            register("async", "Async", false) {
+            register("async", "Async", true) {
                 async = object: AsyncInit {
                     override val skipLoadItem: Boolean = true
 
@@ -162,6 +162,9 @@ class MainActivity : MIUIActivity() {
             register("test", "test", false) {
                 Text("ThisTest")
                 Text("ThisTest1")
+                TextSummaryArrow(TextSummaryV("showTest2", onClickListener = {
+                    showFragment("test2")
+                }))
                 val binding = GetDataBinding(object : DefValue {
                     override fun getValue(): Any {
                         return getSP().getBoolean("binding123", false)
@@ -175,6 +178,11 @@ class MainActivity : MIUIActivity() {
                 TextWithSwitch(TextV("data-binding"), SwitchV("binding123", dataBindingSend = binding.bindingSend))
                 TextWithSwitch(TextV("test123123"), SwitchV("test123123", dataBindingRecv = binding.binding.getRecv(1)))
                 TextSummaryArrow(TextSummaryV("test"), dataBindingRecv = binding.binding.getRecv(2))
+            }
+
+            register("test2", "test2", true) {
+                Text("ThisTest2")
+                Text("ThisTest3")
             }
         }
     }
