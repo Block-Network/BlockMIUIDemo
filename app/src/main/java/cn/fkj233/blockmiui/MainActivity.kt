@@ -99,7 +99,8 @@ class MainActivity : MIUIActivity() {
                 TitleText("DataBinding")
                 val binding = GetDataBinding(object : DefValue {
                     override fun getValue(): Any {
-                        return getSP().getBoolean("binding", false)
+                        val sp = getSP() ?: return false
+                        return sp.getBoolean("binding", false)
                     }
                 }) { view, flags, data ->
                     when (flags) {
@@ -167,7 +168,8 @@ class MainActivity : MIUIActivity() {
                 }))
                 val binding = GetDataBinding(object : DefValue {
                     override fun getValue(): Any {
-                        return getSP().getBoolean("binding123", false)
+                        val sp = getSP() ?: return false
+                        return sp.getBoolean("binding123", false)
                     }
                 }) { view, flags, data ->
                     when (flags) {
