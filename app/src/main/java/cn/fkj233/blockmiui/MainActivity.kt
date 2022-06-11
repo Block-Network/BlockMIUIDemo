@@ -62,6 +62,7 @@ class MainActivity : MIUIActivity() {
                         }
                     }.show()
                 }))
+                TextSummary("TextSummary")
                 TextSummaryArrow(TextSummaryV("test", tips = "summary", onClickListener = {}))
                 TextSummaryWithSwitch(TextSummaryV("test", tips = "summary"), SwitchV("test12312312"))
                 Author(getDrawable(R.mipmap.ic_launcher)!!, "Test", "Test123")
