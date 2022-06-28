@@ -8,7 +8,6 @@ import android.widget.Switch
 import android.widget.Toast
 import cn.fkj233.ui.activity.MIUIActivity
 import cn.fkj233.ui.activity.data.AsyncInit
-import cn.fkj233.ui.activity.data.DefValue
 import cn.fkj233.ui.activity.fragment.MIUIFragment
 import cn.fkj233.ui.activity.view.SpinnerV
 import cn.fkj233.ui.activity.view.SwitchV
