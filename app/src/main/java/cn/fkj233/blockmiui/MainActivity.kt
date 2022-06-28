@@ -98,19 +98,16 @@ class MainActivity : MIUIActivity() {
                 SeekBarWithText("seekbar", 0, 100, 0)
                 Line()
                 TitleText("DataBinding")
-                val binding = GetDataBinding(object : DefValue {
-                    override fun getValue(): Any {
-                        return safeSP.getBoolean("binding", false)
-                    }
-                }) { view, flags, data ->
+                val binding = GetDataBinding({ safeSP.getBoolean("binding", false) }) { view, flags, data ->
                     when (flags) {
                         1 -> (view as Switch).isEnabled = data as Boolean
                         2 -> view.visibility = if (data as Boolean) View.VISIBLE else View.GONE
                     }
                 }
                 TextWithSwitch(TextV("data-binding"), SwitchV("binding", dataBindingSend = binding.bindingSend))
-                TextWithSwitch(TextV("test123"), SwitchV("test123", dataBindingRecv = binding.binding.getRecv(1)))
-                TextSummaryArrow(TextSummaryV("test"), dataBindingRecv = binding.binding.getRecv(2))
+                TextWithSwitch(TextV("test123"), SwitchV("test123", dataBindingRecv = binding.getRecv(1)))
+                TextSummaryArrow(TextSummaryV("test"), dataBindingRecv = binding.getRecv(2))
+//                binding.send("test")
             }
 
             registerMenu("Menu") {
@@ -166,11 +163,7 @@ class MainActivity : MIUIActivity() {
                 TextSummaryArrow(TextSummaryV("showTest2", onClickListener = {
                     showFragment("test2")
                 }))
-                val binding = GetDataBinding(object : DefValue {
-                    override fun getValue(): Any {
-                        return safeSP.getBoolean("binding123", false)
-                    }
-                }) { view, flags, data ->
+                val binding = GetDataBinding({ safeSP.getBoolean("binding123", false) }) { view, flags, data ->
                     when (flags) {
                         1 -> (view as Switch).isEnabled = data as Boolean
                         2 -> view.visibility = if (data as Boolean) View.VISIBLE else View.GONE
