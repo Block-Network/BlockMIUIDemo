@@ -19,6 +19,9 @@ class MainPage : BasePage() {
         TextSummaryArrow(TextSummaryV("showTest", onClickListener = {
             showFragment("test")
         }))
+        TextSummaryArrow(TextSummaryV("showTest2", onClickListener = {
+            showFragment("test2")
+        }))
         TextSummaryArrow(TextSummaryV("showAsyncTest", onClickListener = {
             showFragment("async")
         }))

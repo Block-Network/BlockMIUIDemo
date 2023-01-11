@@ -35,6 +35,11 @@ class MainActivity : MIUIActivity() {
 
     init {
         activity = this
+        registerPage(MainPage::class.java)
+        registerPage(MenuPage::class.java)
+        registerPage(TestPage::class.java)
+        registerPage(Test2Page::class.java)
+        registerPage(AsyncPage::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
