@@ -1,4 +1,4 @@
-package cn.fkj233.blockmiui
+package cn.fkj233.blockmiui.pages
 
 import android.view.View
 import android.widget.Switch
