@@ -27,6 +27,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'cn.fkj233.blockmiui'
 }
 
 dependencies {

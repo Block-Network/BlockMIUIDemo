@@ -1,4 +1,4 @@
-package cn.fkj233.blockmiui
+package cn.fkj233.blockmiui.pages
 
 import cn.fkj233.ui.activity.annotation.BMMenuPage
 import cn.fkj233.ui.activity.data.BasePage

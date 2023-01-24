@@ -5,20 +5,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.view.View
-import android.widget.Switch
 import android.widget.Toast
+import cn.fkj233.blockmiui.pages.*
 import cn.fkj233.ui.activity.MIUIActivity
-import cn.fkj233.ui.activity.annotation.BMMainPage
-import cn.fkj233.ui.activity.annotation.BMPage
-import cn.fkj233.ui.activity.data.AsyncInit
-import cn.fkj233.ui.activity.fragment.MIUIFragment
-import cn.fkj233.ui.activity.view.SpinnerV
-import cn.fkj233.ui.activity.view.SwitchV
-import cn.fkj233.ui.activity.view.TextSummaryV
-import cn.fkj233.ui.activity.view.TextV
-import cn.fkj233.ui.dialog.MIUIDialog
-import cn.fkj233.ui.dialog.NewDialog
 
 class MainActivity : MIUIActivity() {
     companion object {

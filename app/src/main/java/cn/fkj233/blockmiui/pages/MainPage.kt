@@ -1,8 +1,9 @@
-package cn.fkj233.blockmiui
+package cn.fkj233.blockmiui.pages
 
 import android.view.View
 import android.widget.Switch
 import cn.fkj233.blockmiui.MainActivity.Companion.showToast
+import cn.fkj233.blockmiui.R
 import cn.fkj233.ui.activity.MIUIActivity
 import cn.fkj233.ui.activity.annotation.BMMainPage
 import cn.fkj233.ui.activity.data.BasePage
